@@ -1,0 +1,35 @@
+<form action="{% url "logic:upload_file" %}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+    {% csrf_token %}
+    <p>
+        <b>Password Finder: Find a password with sequencies</b>
+    </p>
+    <p>
+        This endpoint find the shortest password based in a .txt file, that contain sequences of the password.
+    </p>
+    <p>
+        A sequence contain some characters of the password keeping the order.
+    </p>
+    <p>
+        <b>password:</b> 34879 one possible <b>sequence:</b> 389
+    </p>
+    <p>
+        The input file must contain a sequence per line. An example file can be dowloaded from:
+    </p>
+    <p>
+        <b>Right clic and Save Link As ...:</b>
+    </p>
+    <p>
+        <a href="https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/locations.csv">Example file</a> 
+    </p>
+    <div class="form-group">
+        <label for="name" class="col-md-3 col-sm-3 col-xs-12 control-label">File: </label>
+        <div class="col-md-8">
+            <input type="file" name="key_file" id="key_file" required="True" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
+            <button class="btn btn-primary"> <span class="glyphicon glyphicon-upload" style="margin-right:5px;"></span>Upload </button>
+        </div>
+    </div>
+</form>

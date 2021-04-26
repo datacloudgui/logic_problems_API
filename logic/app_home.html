@@ -1,0 +1,68 @@
+<form action="{% url "logic:upload_file" %}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+    {% csrf_token %}
+    <p>
+        <b>Technical test: </b>
+    </p>
+    <p>
+        This app solve two logical problems.
+    </p>
+    <p>
+        <b>1. Ping Pong Game.</b>
+    </p>
+    <p>
+        Ana, Jose and Juan play ping pong, each of them play the quantity of games viewed below.
+    </p>
+    <p>
+        If a player lose the game, in the next game the waiting player plays against the winner.
+    </p>
+    <p>
+        <b>Player------------Games played</b>
+    </p>
+    <p>
+        <b>Player1: Ana-----17</b>
+    </p>
+    <p>
+        <b>Player2: Jose----15</b>
+    </p>
+    <p>
+        <b>Player3: Juan---10</b>
+    </p>
+    <p>
+        <b>Question:</b> Who is the loser of the second game? and which games this person lose?
+    </p>
+    <p>
+        The next link provide the answer with the games played showed above.
+    </p>
+    <p>
+        <a href="{% url "logic:pingpong" %}" target ="_blank">Ping pong solution</a> 
+    </p>
+    <p>
+        If you want simulate the "Find second loser" with other scores add the follow parameters to the URL.
+    </p>
+    <p>
+        /api/v1/games/secondloser?player1=12&player2=10&player3=5
+    </p>
+    <p>
+        By default players are in the same order showed previously. Ex: Player1: Ana
+    </p>
+    <p>
+        <a href="{% url "logic:pingpong" %}?player1=12&player2=10&player3=5" target ="_blank">Example with different parameters</a> 
+    </p>
+    <p>
+        Notice that if its not posible calculate the second loser a message show the why.
+    </p>
+
+
+    <p>
+        <b>2. Password finder.</b>
+    </p>
+    <p>
+        Process a .txt file to find a password based on sequences of the password.
+    </p>
+    <p>
+        More details and test:
+    </p>
+    <p>
+        <a href="{% url "logic:upload_file" %}" target ="_blank">Password finder</a> 
+    </p>
+</form>
