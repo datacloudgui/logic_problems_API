@@ -26,7 +26,7 @@
 
 This API solve two logical problems:
 
-Can be reviewed: [www.fdf](Logic_prolems_API)
+Can be reviewed: [https://smklogic.herokuapp.com/index/](https://smklogic.herokuapp.com/index/)
 
 This project uses the following libraries and technologies:
 
@@ -35,7 +35,7 @@ This project uses the following libraries and technologies:
 * Django
 * PostgresQL - Two tablas created in Ping Pong problem
 * GIT
-* AWS - The deployed postgres DB
+* AWS - The deployed postgres DB attached to heroku settings
 
 ### Ping pong problem
 
