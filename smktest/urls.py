@@ -17,7 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 
+import logic.views
+
 urlpatterns = [
+    url('index/', logic.views.index),
     path('admin/', admin.site.urls),
-    url(r'^', include('logic.urls')),
+    url(r'^', include(('logic.urls', 'logic'), namespace='logic')),
 ]
