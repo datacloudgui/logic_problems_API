@@ -1,19 +1,24 @@
-#
+#This file contain the logic to solve the Ping Pong Game problem
 #
 #
 
 def find_second_loser(player1, player2, player3):
     """
-    Validate the amount of data in the DB
+    Wrap the process to find the second loser
 
             Parameters:
-                    Not requiered
+                    player1 (int): Score of the first player
+                    player2 (int): Score of the second player
+                    player3 (int): Score of the third player
 
             Returns:
-                    Nothing
+                    loser_name (str): The name of the second loser
+                    lost_games (list): List with the number of lost games
     """
 
+    #Validate the scores received
     validation_error, message, loser_score, num_games = validate_data(player1, player2, player3)
+
     if not validation_error:
         return "Second loser can't be founded: " + message, []
     else:
@@ -55,8 +60,21 @@ def validate_data(player1, player2, player3):
     return True, "", loser_score, num_games
 
 def second_loser(scores, loser_score, num_games):
+    """
+    Return
 
-    second_loser_name = "Player " + str(scores.index(loser_score) + 1)
+            Parameters:
+                    scores (list) a list with the scores ordered by player
+                    loser_score (int) score of the loser player
+                    num_games (float) Number of games obtained
+
+            Returns:
+                    second_loser_name (bool) name of the second loser
+                    second_loser_list (list) list of the lost games of the loser
+    """
+    names = ["Ana", "Jose", "Juan"]
+
+    second_loser_name = names[scores.index(loser_score)]
     second_loser_list = [i for i in range(1,int(num_games)) if i % 2 == 0]
 
-    return second_loser_name, second_loser_list
+    return second_loser_name, second_loser_list, loser_score

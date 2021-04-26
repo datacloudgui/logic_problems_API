@@ -8,13 +8,14 @@ from rest_framework.parsers import JSONParser
 from rest_framework.decorators import api_view
 from rest_framework import status
 
-import os
-import csv
+from datetime import date
 
 #Importing the py files with the logic
 from logic.pingpong import find_second_loser
 from logic.password_finder import Password_finder
 from logic.clean_keylog import clean_sequences
+
+from logic.models import Players, Second_losers
 
 
 @api_view(['GET'])
@@ -30,14 +31,27 @@ def secondloser(request):
 
     try:
         #Send params to the logic function, return the second_loser_name (str) and lost_games (list)
-        second_loser_name, lost_games = find_second_loser(int(player1), int(player2), int(player3))
+        second_loser_name, lost_games, loser_score = find_second_loser(int(player1), int(player2), int(player3))
     except ValueError:
         #Manage if some param cannot be converted to int.
         return JsonResponse('Please review the scores sended, scores must be numbers',
                                 safe=False, status= status.HTTP_400_BAD_REQUEST)
 
+    try:
+        #Save the loser founded in DB
+        Second_losers_registry = Second_losers.objects.create(name = Players.objects.get(name=second_loser_name),
+        date_data = date.today(), score=loser_score)
+        Second_losers_registry.save()
+    except:
+        #if no player is founded the register is note saved
+        pass
+
+    count = Second_losers.objects.count()
+
     data = [{"second_loser_name": second_loser_name,
-                "lost games": lost_games}]
+                "second_losers_found": count,
+                "lost games": lost_games,
+                }]
 
     return JsonResponse(data, safe=False, status=status.HTTP_200_OK)
 
